@@ -68,13 +68,20 @@ func (c *Client) VectorizeProduct(ctx context.Context, product Structures.Produc
 	// Combine name and description for better semantic representation
 	text := fmt.Sprintf("%s: %s (Category: %s)", product.Name, product.Description, product.Category)
 
-	embedding, err := c.GetEmbedding(ctx, text)
+	embedding, err := c.VectorizePlainText(ctx, text)
 	if err != nil {
 		return nil, fmt.Errorf("failed to vectorize product %s: %w", product.Name, err)
 	}
-
 	return &Structures.VectorizedProduct{
 		Product:   product,
 		Embedding: embedding,
 	}, nil
+}
+
+func (c *Client) VectorizePlainText(ctx context.Context, text string) ([]float32, error) {
+	embedding, err := c.GetEmbedding(ctx, text)
+	if err != nil {
+		return nil, fmt.Errorf("failed to vectorize plain text: %w", err)
+	}
+	return embedding, nil
 }
