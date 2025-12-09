@@ -3,10 +3,11 @@ package openai
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 
 	"product_search_and_vectorize_service/app/Structures"
+
+	"product_search_and_vectorize_service/app/utils"
 
 	"github.com/sashabaranov/go-openai"
 )
@@ -54,7 +55,9 @@ func (c *Client) GetEmbedding(ctx context.Context, text string) ([]float32, erro
 		return nil, fmt.Errorf("no embedding returned")
 	}
 
-	log.Println("Embedding returned:", resp)
+	if err := utils.LogEmbedding(c.model, text, resp); err != nil {
+		return nil, fmt.Errorf("failed to log embedding: %w", err)
+	}
 
 	return resp.Data[0].Embedding, nil
 }
