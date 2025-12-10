@@ -37,9 +37,12 @@ func VectorizeProductService(ctx context.Context, product Structures.Product) (*
 
 	// Store in Qdrant
 	if err := qdrantClient.UpsertProduct(ctx, product.UserID, *vectorizedProduct); err != nil {
-		return nil, fmt.Errorf("failed to store product in qdrant: %w", err)
+		log.Printf("Warning: failed to store product in qdrant: %v", err)
+		vectorizedProduct.StoredInQdrant = false
+		return vectorizedProduct, nil
 	}
 
+	vectorizedProduct.StoredInQdrant = true
 	log.Printf("Successfully stored product '%s' (ID: %d) in Qdrant collection 'products_user_%d'", product.Name, product.ID, product.UserID)
 	return vectorizedProduct, nil
 }

@@ -41,8 +41,8 @@ func (c *Client) SetModel(model openai.EmbeddingModel) {
 	c.model = model
 }
 
-// GetEmbedding creates an embedding for a single text
-func (c *Client) GetEmbedding(ctx context.Context, text string) ([]float32, error) {
+// GetEmbedding creates an embedding for a single text and returns embedding with usage info
+func (c *Client) GetEmbedding(ctx context.Context, text string) (*Structures.EmbeddingResult, error) {
 	resp, err := c.client.CreateEmbeddings(ctx, openai.EmbeddingRequest{
 		Input: []string{text},
 		Model: c.model,
@@ -59,7 +59,14 @@ func (c *Client) GetEmbedding(ctx context.Context, text string) ([]float32, erro
 		return nil, fmt.Errorf("failed to log embedding: %w", err)
 	}
 
-	return resp.Data[0].Embedding, nil
+	return &Structures.EmbeddingResult{
+		Embedding: resp.Data[0].Embedding,
+		Model:     string(resp.Model),
+		Usage: Structures.EmbeddingUsage{
+			PromptTokens: resp.Usage.PromptTokens,
+			TotalTokens:  resp.Usage.TotalTokens,
+		},
+	}, nil
 }
 
 // VectorizeProduct creates an embedding for a single product
@@ -68,20 +75,23 @@ func (c *Client) VectorizeProduct(ctx context.Context, product Structures.Produc
 	// Combine name and description for better semantic representation
 	text := fmt.Sprintf("%s: %s (Category: %s)", product.Name, product.Description, product.Category)
 
-	embedding, err := c.VectorizePlainText(ctx, text)
+	result, err := c.GetEmbedding(ctx, text)
 	if err != nil {
 		return nil, fmt.Errorf("failed to vectorize product %s: %w", product.Name, err)
 	}
 	return &Structures.VectorizedProduct{
 		Product:   product,
-		Embedding: embedding,
+		Embedding: result.Embedding,
+		Model:     result.Model,
+		Usage:     result.Usage,
 	}, nil
 }
 
-func (c *Client) VectorizePlainText(ctx context.Context, text string) ([]float32, error) {
-	embedding, err := c.GetEmbedding(ctx, text)
+// VectorizePlainText creates an embedding for plain text and returns embedding with usage info
+func (c *Client) VectorizePlainText(ctx context.Context, text string) (*Structures.EmbeddingResult, error) {
+	result, err := c.GetEmbedding(ctx, text)
 	if err != nil {
 		return nil, fmt.Errorf("failed to vectorize plain text: %w", err)
 	}
-	return embedding, nil
+	return result, nil
 }

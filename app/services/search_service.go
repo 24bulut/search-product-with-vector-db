@@ -20,11 +20,11 @@ func SearchProductsService(ctx context.Context, userID uint64, query string, lim
 	}
 
 	// Vectorize the search query
-	queryVector, err := openaiClient.VectorizePlainText(ctx, query)
+	queryResult, err := openaiClient.VectorizePlainText(ctx, query)
 	if err != nil {
 		return nil, fmt.Errorf("failed to vectorize query: %w", err)
 	}
-	log.Printf("Query vectorized, dimension: %d", len(queryVector))
+	log.Printf("Query vectorized, dimension: %d, tokens used: %d", len(queryResult.Embedding), queryResult.Usage.TotalTokens)
 
 	// Create Qdrant client to search
 	qdrantClient, err := qdrant.NewClient()
@@ -34,7 +34,7 @@ func SearchProductsService(ctx context.Context, userID uint64, query string, lim
 	defer qdrantClient.Close()
 
 	// Search similar products in user's collection
-	products, err := qdrantClient.SearchSimilar(ctx, userID, queryVector, limit)
+	products, err := qdrantClient.SearchSimilar(ctx, userID, queryResult.Embedding, limit)
 	if err != nil {
 		return nil, fmt.Errorf("failed to search products: %w", err)
 	}
