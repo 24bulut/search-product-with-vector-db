@@ -1,51 +1,147 @@
 [
   {
+    "id": 1,
+    "user_id": 1,
     "name": "Laptop Pro 15",
     "description": "High-performance laptop with 16GB RAM, 512GB SSD, and Intel i7 processor. Perfect for professionals and developers.",
     "price": 1299.99,
     "category": "Electronics"
   },
   {
+    "id": 2,
+    "user_id": 1,
     "name": "Wireless Mouse",
     "description": "Ergonomic wireless mouse with long battery life and precise tracking. Compatible with all operating systems.",
     "price": 29.99,
     "category": "Electronics"
   },
   {
+    "id": 3,
+    "user_id": 1,
     "name": "Mechanical Keyboard",
     "description": "RGB backlit mechanical keyboard with Cherry MX switches. Great for gaming and typing.",
     "price": 149.99,
     "category": "Electronics"
   },
   {
+    "id": 4,
+    "user_id": 1,
     "name": "Coffee Maker",
     "description": "Programmable coffee maker with 12-cup capacity. Includes thermal carafe to keep coffee hot.",
     "price": 79.99,
     "category": "Home & Kitchen"
   },
   {
+    "id": 5,
+    "user_id": 1,
     "name": "Running Shoes",
     "description": "Lightweight running shoes with cushioned sole and breathable mesh upper. Perfect for daily runs.",
     "price": 89.99,
     "category": "Sports & Outdoors"
   },
   {
+    "id": 6,
+    "user_id": 1,
     "name": "Yoga Mat",
     "description": "Non-slip yoga mat with extra cushioning. Eco-friendly and easy to clean.",
     "price": 24.99,
     "category": "Sports & Outdoors"
   },
   {
+    "id": 7,
+    "user_id": 1,
     "name": "Smart Watch",
     "description": "Fitness tracker with heart rate monitor, GPS, and 7-day battery life. Water resistant.",
     "price": 199.99,
     "category": "Electronics"
   },
   {
+    "id": 8,
+    "user_id": 1,
     "name": "Desk Lamp",
     "description": "LED desk lamp with adjustable brightness and color temperature. USB charging port included.",
     "price": 39.99,
     "category": "Home & Kitchen"
+  },
+  {
+    "id": 9,
+    "user_id": 1,
+    "name": "Smart Home Hub",
+    "description": "Voice-controlled smart home hub with Amazon Alexa built-in. Control your lights, thermostat, and more.",
+    "price": 199.99,
+    "category": "Electronics"
+  },
+  {
+    "id": 1,
+    "user_id": 2,
+    "name": "Laptop Pro 16",
+    "description": "High-performance laptop with 16GB RAM, 1TB SSD, and Intel i9 processor. Perfect for professionals and developers.",
+    "price": 1299.99,
+    "category": "Electronics"
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "name": "Wireless Mouse",
+    "description": "Ergonomic wireless mouse with long battery life and precise tracking. Compatible with all operating systems.",
+    "price": 29.99,
+    "category": "Electronics"
+  },
+  {
+    "id": 3,
+    "user_id": 2,
+    "name": "Mechanical Keyboard",
+    "description": "RGB backlit mechanical keyboard with Cherry MX switches. Great for gaming and typing.",
+    "price": 149.99,
+    "category": "Electronics"
+  },
+  {
+    "id": 4,
+    "user_id": 2,
+    "name": "Coffee Maker",
+    "description": "Programmable coffee maker with 12-cup capacity. Includes thermal carafe to keep coffee hot.",
+    "price": 79.99,
+    "category": "Home & Kitchen"
+  },
+  {
+    "id": 5,
+    "user_id": 2,
+    "name": "Running Shoes",
+    "description": "Lightweight running shoes with cushioned sole and breathable mesh upper. Perfect for daily runs. Made with recycled materials.",
+    "price": 89.99,
+    "category": "Sports & Outdoors"
+  },
+  {
+    "id": 6,
+    "user_id": 2,
+    "name": "Yoga Mat",
+    "description": "Non-slip yoga mat with extra cushioning. Eco-friendly and easy to clean. Made with recycled materials.",
+    "price": 24.99,
+    "category": "Sports & Outdoors"
+  },
+  {
+    "id": 7,
+    "user_id": 2,
+    "name": "Smart Watch",
+    "description": "Fitness tracker with heart rate monitor, GPS, and 14-day battery life. Water resistant.",
+    "price": 199.99,
+    "category": "Electronics"
+  },
+  {
+    "id": 8,
+    "user_id": 2,
+    "name": "Desk Lamp",
+    "description": "LED desk lamp with adjustable brightness and color temperature. USB charging port included.",
+    "price": 39.99,
+    "category": "Home & Kitchen"
+  },
+  {
+    "id": 9,
+    "user_id": 2,
+    "name": "Smart Home Hub",
+    "description": "Voice-controlled smart home hub with Amazon Alexa built-in. Control your lights, thermostat, and more.",
+    "price": 199.99,
+    "category": "Electronics"
   }
 ]
 
