@@ -4,14 +4,19 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"product_search_and_vectorize_service/app/controllers"
 )
 
 func main() {
+	// Initialize controllers
+	productController := controllers.NewProductController()
+
 	// Simple hello world endpoint
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(map[string]string{
-			"message": "Hello World!",
+			"message": "Product Search and Vectorize Service",
 		})
 	})
 
@@ -23,7 +28,13 @@ func main() {
 		})
 	})
 
-	log.Println("Server starting on port 8080...")
-	log.Println("Try: curl http://localhost:8080/")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	// Product endpoints
+	http.HandleFunc("/api/products/vectorize", productController.VectorizeProduct)
+
+	log.Println("Server starting on port 8091...")
+	log.Println("Endpoints:")
+	log.Println("  GET  /           - Service info")
+	log.Println("  GET  /health     - Health check")
+	log.Println("  POST /api/products/vectorize - Vectorize a product")
+	log.Fatal(http.ListenAndServe(":8091", nil))
 }
